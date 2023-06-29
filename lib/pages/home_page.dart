@@ -6,7 +6,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Text("Flutter"),
+        title: const Text("Flutter"),
       ),
       body: Center(
         child: Container(
