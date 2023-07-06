@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/utils/routes.dart';
 
 class LoginPage extends StatelessWidget {
   
@@ -12,13 +13,16 @@ class LoginPage extends StatelessWidget {
     return Material(
       color: Colors.white,
       
+      child: SingleChildScrollView(
       child: Column(
         children: [
           Image.asset("assets/undraw_Love_it_uipc.png",
-          fit:BoxFit.cover),
+          fit:BoxFit.cover,
+          height: 300,
+          ),
            const Text("Welcome",
            style: TextStyle(
-            fontSize: 24,
+            fontSize: 28,
             fontWeight: FontWeight.bold,
             )
            ),
@@ -42,15 +46,17 @@ class LoginPage extends StatelessWidget {
                 labelText: "Password",
               ),
              ),
-             const SizedBox(
+             SizedBox(
               height: 20.0,
              ),
              ElevatedButton(
              child: Text("Login"), 
-             style: TextButton.styleFrom(),
+             style: TextButton.styleFrom(
+              minimumSize: Size(150,40),
+             ),
              onPressed:()
              {
-              print("Chadan Dani");
+              Navigator.pushNamed(context, MyRoutes.homeRoutes);
              }, 
              )
               ],
@@ -61,6 +67,7 @@ class LoginPage extends StatelessWidget {
 
         ],
       ),
+      )
     );
   }
 }
