@@ -3,11 +3,17 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/utils/routes.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   
 
   const LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  bool changeButton = false;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -20,13 +26,13 @@ class LoginPage extends StatelessWidget {
           fit:BoxFit.cover,
           height: 300,
           ),
-           const Text("Welcome",
+            Text("Welcome",
            style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.bold,
             )
            ),
-           const SizedBox(
+            SizedBox(
             height:20.0,
            ),
            Padding(
@@ -49,15 +55,41 @@ class LoginPage extends StatelessWidget {
              SizedBox(
               height: 20.0,
              ),
-             ElevatedButton(
-             child: Text("Login"), 
+             /*ElevatedButton(child: Text("Login"), 
              style: TextButton.styleFrom(
-              minimumSize: Size(150,40),
+              minimumSize:  Size(150,40),
              ),
              onPressed:()
              {
               Navigator.pushNamed(context, MyRoutes.homeRoutes);
              }, 
+             )*/
+             InkWell( 
+              onTap: () async{
+                setState(() {
+                  changeButton = true;
+                });
+
+                await Future.delayed(Duration(milliseconds: 1));
+                Navigator.pushNamed(context, MyRoutes.homeRoutes);
+              },
+               child: AnimatedContainer(
+                duration: Duration(milliseconds: 1),
+                width: changeButton ? 100 : 150,
+                height: 40,
+                alignment: Alignment.center,
+                child: changeButton?Icon(Icons.done,color:Colors.white):
+                Text("Login", 
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 70, 2, 186),
+                    borderRadius: BorderRadius.circular(changeButton ? 20 : 8)
+                  ),
+               ),
              )
               ],
              ),
